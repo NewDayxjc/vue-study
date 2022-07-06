@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript 基础 - 引入方式</title>
+</head>
+<body>
+<script src="demp.js">
+alert("first step")
+
+testArguments(1,3,5,6,7,9)
+
+function testArguments(a,b){
+    for (let i = 0; i < arguments.length; i++) {
+        console.log(arguments[i])
+    }
+    return a;
+}
+</script>
+<script>
+    testArguments(1,3,5,6,7,9)
+
+    function testArguments(a,b){
+        for (let i = 0; i < arguments.length; i++) {
+            console.log(arguments[i])
+        }
+        return a;
+    }
+</script>
+</body>
+</html>
+

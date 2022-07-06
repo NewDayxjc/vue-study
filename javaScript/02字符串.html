@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+
+<body>
+<div id="str">
+Hello World!
+</div>
+
+<div id="clickOn" onclick="bullon()">
+
+</div>
+<button>点击按钮1</button>
+<button>点击按钮2</button>
+<button>点击按钮3-兼容IE9</button>
+<div id="bull">
+    OnMouse
+</div>
+<a href="#" target="_blank">跳转</a>
+<li>
+    <ul>Option Select</ul>
+
+</li>
+<img src="../static/car.jpg">
+
+</body>
+<script>
+    var element = document.getElementById("str").onclick=function (){
+        alert(this.innerHTML);
+    };
+    var buttonList = document.querySelectorAll('button');
+    //传统方式注册事件   执行
+    buttonList[0].onclick=function (){
+        alert('hi')
+    }
+    buttonList[0].onclick= function (){
+        alert('hao a u')
+    }
+    //事件侦听注册事件 addEventListener
+    buttonList[1].addEventListener('click',function (){
+        alert('22')
+    })
+    buttonList[1].addEventListener('click',function (){
+        alert('33')
+    })
+    //attachEvent ie9以前的版本支持
+    // buttonList[2].attachEvent('onclick',function (){
+    //     alert(11)
+    // })
+
+    var uls = document.querySelector("a");
+    uls.addEventListener('click',function (e){
+        console.log(e.clientX)
+        console.log(e.clientY)
+        alert("阻止冒泡")
+        e.stopPropagation()
+        e.preventDefault();
+        console.dir(e.target)
+        console.log(e.target)
+        console.dir(this)
+        console.log(this)
+        console.dir(e.currentTarget)
+        console.log(e.currentTarget)
+        alert(e.currentTarget)
+    })
+    var pic = document.querySelector("img");
+    document.addEventListener('mousemove',function (e){
+        var x = e.pageX;
+        var y = e.pageY;
+        console.log("X坐标是"+x,"Y坐标是"+y);
+        pic.style.left=x-50+'px';
+        pic.style.top=y-40+'px';
+    });
+
+    //定时器回调函数
+    setTimeout(function (){
+        console.dir(element.style)
+        alert("Time is out");
+    },2000)
+
+
+    function bullon(){
+
+    }
+
+</script>
+<script>
+
+</script>
+</html>

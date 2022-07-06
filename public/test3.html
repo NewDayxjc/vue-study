@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/vue@3.0.0-beta.12/dist/vue.global.js"></script>
+</head>
+<body>
+<div id="counter">
+    Counter: {{ counter }}
+</div>
+
+Import Js
+<script>
+    const Counter = {
+        data() {
+            return {
+                counter: 7
+            }
+        }
+    }
+
+    Vue.createApp(Counter).mount('#counter')
+
+</script>
+</body>
+</html>

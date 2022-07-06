@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<!--    <script src="https://unpkg.com/vue@3.0.0-beta.12/dist/vue.global.js"></script>-->
+    <script type="application/javascript" src="src/js/vue.js"></script>
+</head>
+<body>
+<div id="counter">
+    Counter: {{counter}}
+</div>
+<div id="bind-attribute">
+  <span v-bind:title="message">
+    鼠标悬停几秒钟查看此处动态绑定的提示信息！
+  </span>
+</div>
+<div id="app1">
+<my-button v-bind:title="message">
+    鼠标悬停几秒钟
+</my-button>
+</div>
+<!--<script>-->
+<!--    const Counter = {-->
+<!--        data() {-->
+<!--            return {-->
+<!--                counter: 7-->
+<!--            }-->
+<!--        }-->
+<!--    }-->
+
+<!--    Vue.createApp(Counter).mount('#counter')-->
+
+<!--</script>-->
+<script type="application/javascript">
+    const AttributeBinding = {
+        data() {
+            return {
+                message: 'You loaded this page on ' + new Date().toLocaleString()
+            }
+        }
+    }
+
+    // const app=Vue.createApp(AttributeBinding)
+    const app=Vue.createApp()
+    //.mount('#bind-attribute');
+    // const app=Vue.createApp();
+    app.component('my-button',{
+        data() {
+            return {
+                message: 'You loaded this page on ' + new Date().toLocaleString()
+            }
+        }
+    })
+    app.mount("app1")
+</script>
+</body>
+
+</html>
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8" />-->
+<!--    <title>Vue Mastery</title>-->
+<!--    &lt;!&ndash; Import Styles &ndash;&gt;-->
+<!--&lt;!&ndash;    <link rel="stylesheet" href="./assets/styles.css" />&ndash;&gt;-->
+<!--    &lt;!&ndash; Import Vue.js &ndash;&gt;-->
+<!--    <script src="https://unpkg.com/vue@3.0.0-beta.12/dist/vue.global.js"></script>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div id="counter">-->
+<!--    Counter: {{ counter }}-->
+<!--</div>-->
+
+<!-- Import Js-->
+<!--<script>-->
+<!--    const Counter = {-->
+<!--        data() {-->
+<!--            return {-->
+<!--                counter: 7-->
+<!--            }-->
+<!--        }-->
+<!--    }-->
+
+<!--    Vue.createApp(Counter).mount('#counter')-->
+
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BOM浏览器对象模型</title>
+</head>
+<body>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+    console.log("弹框")
+})
+
+// window.onresize = function(){}
+window.addEventListener("resize",function(){
+    alert("调整大小")
+});
+// window.onresize=function (){
+//     alert("调整大小")
+// }
+console.log("url"+location.url)
+console.log("hash"+location.hash)
+console.log("href "+location.href)
+console.log("port "+location.port)
+console.log("host "+location.host)
+// location.reload();
+// location.replace();
+
+console.log(navigator.userAgent)
+console.log(window.pageXOffset)
+
+window.sessionStorage.getItem("")
+</script>
+
+</body>
+</html>

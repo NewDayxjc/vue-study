@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>插值语法</title>
+    <script type="application/javascript" src="../js/vue.js"></script>
+
+</head>
+<body>
+<div id="root">
+    姓：<input type="text" v-model="firstName"><br/><br/>
+    名：<input type="text" v-model="lastName"><br/><br/>
+<!-- 这里fullName方法作为函数需要添加(),否则这里展示的是fullName的函数数据，而不是方法的返回值-->
+    全称：<span>{{fullName()}}</span>
+</div>
+
+</body>
+<script type="application/javascript">
+
+    Vue.config.productionTip=false //阻止vue 在启动时生成生产提示
+    new Vue({
+        el:'#root',
+        /*
+        data中任何在模板中有使用的内容有变化时，VUE的模板都会重新解析一遍
+        模板里面如果有调用插值形式的方法，那么该方法也会重新解析一遍
+        **/
+        data:{
+            firstName:'张',
+            lastName: '三',
+        },
+        methods:{
+            fullName(){
+                //this 此时表示的是当前VUE对象
+                // console.log(this.firstName+'-'+this.lastName)
+                /**
+                 * slice(0,3) 函数，截断函数；
+                 */
+                console.log('@',this)
+
+                return this.firstName.slice(0,3)+'-'+this.lastName;
+            }
+        }
+    })
+
+</script>
+</html>
