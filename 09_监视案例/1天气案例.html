@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>天气案例</title>
+    <script type="application/javascript" src="../js/vue.js"></script>
+<style scoped>
+
+</style>
+</head>
+
+<body>
+<div id="root">
+    <h2>今天天气很{{this.hot ? '酷热':'凉爽'}}</h2>
+    <!--绑定事件的时候 @xxx="yyy" yyy 可以些一些简单的语句-->
+    <!--<button @click="converTempature">点击</button>-->
+    <button @click="converTempature">点击切换天气</button>
+</div>
+
+</body>
+<script type="application/javascript">
+    Vue.config.productionTip=false;//阻止VUE 在启动时生成生产提示
+    new Vue({
+        el:'#root',
+        data: {
+            hot:true
+        },
+        computed:{
+            info(){
+                return this.hot ? '酷热':'凉爽'
+            }
+        },
+        methods: {
+            converTempature(){
+                this.hot= !this.hot
+            }
+        },
+    })
+
+
+
+</script>
+</html>

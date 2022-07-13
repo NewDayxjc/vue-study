@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>天气案例_监视属性</title>
+    <script type="application/javascript" src="../js/vue.js"></script>
+
+<style scoped>
+
+</style>
+</head>
+
+<body>
+    <!--
+        监视属性watch：
+        1：当被监视的属性变化时，回调函数自动调用，进行相关操作
+        2：监视的属性必须存在，才能进行监视！！
+        3：监视的两种写法：
+        （1）：new Vue时传入watch配置
+        （2）:通过vm.$watch监视
+    -->
+<div id="root">
+    <h2>今天天气很{{this.hot ? '酷热':'凉爽'}}</h2>
+
+    <button @click="converTempature">点击切换天气</button>
+</div>
+
+</body>
+<script type="application/javascript">
+    Vue.config.productionTip=false;//阻止VUE 在启动时生成生产提示
+    new Vue({
+        el:'#root',
+        data: {
+            hot:true
+        },
+        computed:{
+            info(){
+                return this.hot ? '酷热':'凉爽'
+            }
+        },
+        methods: {
+            converTempature(){
+                this.hot= !this.hot
+            }
+        },
+        watch:{
+            // hot:{
+            //     //初始化时让handler调用一次：默认值为false
+            //     immediate:true,
+            //     //handler什么时候调用？当hot发生改变时；
+            //     handler(newValue,oldValue){  
+            //     console.log("新值"+newValue,"旧值"+oldValue)
+            //     }
+            // }
+
+            info:{
+                //初始化时让handler调用一次：默认值为false
+                immediate:true,
+                //handler什么时候调用？当hot发生改变时；
+                handler(newValue,oldValue){
+                console.log("新值"+newValue,"旧值"+oldValue)
+                }
+            }
+            
+        }
+    })
+
+
+
+</script>
+</html>

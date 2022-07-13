@@ -27,6 +27,7 @@
         data:{
             firstName:'张',
             lastName: '三',
+            fullName:'张三'
         },
 
 
@@ -50,9 +51,20 @@
             //
             // },
             //形式二 此时该简写方法就相当于get()，使用属性值访问； 使用场景：当该方法中不需要set时
-            fullName(){
-                console.log("get被调用了")
-                return this.firstName +'-'+this.lastName;
+            // fullName(){
+            //     console.log("get被调用了")
+            //     return this.firstName +'-'+this.lastName;
+            // }
+        },
+        watch:{
+            firstName(newValue){
+                console.log('fullName被改变了')
+                this.fullName=newValue+this.lastName;
+            },
+            lastName(oldValue,newValue){
+                console.log('fullName被改变了')
+                this.fullName=this.firstName+newValue;
+                console.log(oldValue,newValue)
             }
         }
     })

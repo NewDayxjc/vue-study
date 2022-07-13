@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>天气案例_监视属性_深度监视</title>
+    <script type="application/javascript" src="../js/vue.js"></script>
+
+<style scoped>
+
+</style>
+</head>
+
+<body>
+    <!--
+        深度监视：
+        （1）：Vue中的watch默认不监测对象内部值的改变（一层）
+        （2）：配置deep:true可以监测对象内部值改变(多层)
+        备注：
+        （1）:Vue自身可以监测对象内部值的改变，但Vue提供的watch默认不可以！
+        (2):使用watch时根据数据的具体结构，决定是否采用深度监视；
+
+
+    -->
+<div id="root">
+    {{numbers.a}}  <br/>
+    {{numbers.b}}  <br/>
+    <button @click="changeNumbersA">点击改变A</button>
+    <button @click="changeNumbersB">点击改变B</button>
+</div>
+
+</body>
+<script type="application/javascript">
+    Vue.config.productionTip=false;//阻止VUE 在启动时生成生产提示
+    new Vue({
+        el:'#root',
+        data: {
+            hot:true,
+            numbers:{
+                a:6,
+                b:8
+            }
+        },
+        computed:{
+            info(){
+                return this.hot ? '酷热':'凉爽'
+            }
+        },
+        methods: {
+            converTempature(){
+                this.hot= !this.hot
+            },
+            changeNumbersA(){
+                this.numbers.a++;
+            },
+            changeNumbersB(){
+                this.numbers.b++;
+            }
+        },
+        watch:{
+            // hot:{
+            //     //初始化时让handler调用一次：默认值为false
+            //     immediate:true,
+            //     //handler什么时候调用？当hot发生改变时；
+            //     handler(newValue,oldValue){  
+            //     console.log("新值"+newValue,"旧值"+oldValue)
+            //     }
+            // }
+            // 'numbers.a':{
+            //     handler(){
+            //         console.log("numbersA被改变了")
+            //     }
+            // }
+
+            numbers:{
+                deep:true,
+                handler(){
+                    console.log("numbers被改变了")
+                }
+            }
+            
+        }
+    })
+
+
+
+</script>
+</html>
