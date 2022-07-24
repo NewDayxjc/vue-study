@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>计算属性</title>
+    <script type="application/javascript" src="../js/vue.js"></script>
+
+</head>
+<body>
+    <!--
+        总结：
+        computed和watch之间的区别：
+        1：computed能完成的功能，watch都可以完成
+        2：watch能完成的功能，computed不一定能完成，例如：watch可以进行异步操作
+        两个重要的小原则：
+        1：所被Vue管理的函数，最好写成普通函数，这样this的指向才是vm或组件实例函数。
+        2：所有不被Vue所管理的函数(定时器的回调函数、ajax的回调函数等、Promise的回调函数)，最好写成箭头函数，这样this的指向才是vm或组件实例对象
+    -->
+<div id="root">
+    姓：<input type="text" v-model="firstName"><br/><br/>
+    名：<input type="text" v-model="lastName"><br/><br/>
+    全称：<span>{{fullName}}</span>
+</div>
+
+</body>
+<script type="application/javascript">
+
+    Vue.config.productionTip=false //阻止vue 在启动时生成生产提示
+    const vm=new Vue({
+        el:'#root',
+        /*
+        data中任何在模板中有使用的内容有变化时，VUE的模板都会重新解析一遍
+        模板里面如果有调用插值形式的方法，那么该方法也会重新解析一遍
+        computed 计算属性不存在于vm._data中,但是存在于vm上，即可以直接使用插值语法读取即可
+        **/
+        data:{
+            firstName:'张',
+            lastName: '三',
+            fullName: '张三'
+        },
+
+
+        computed:{
+            //完整写法
+            // fullName:{
+            //     get(){
+            //         console.log("get被调用了")
+            //         return this.firstName +'-'+this.lastName;
+            //     },
+            //
+            //     set(value){
+            //         console.log("set被调用",value)
+            //         const name=value.split('-')
+            //         this.firstName=name[0]
+            //         this.lastName=name[1]
+            //     }
+            // }
+            //形式一
+            // fullName:function (){
+            //
+            // },
+            //形式二 此时该简写方法就相当于get()，使用属性值访问； 使用场景：当该方法中不需要set时
+            // fullName(){
+            //     console.log("get被调用了")
+            //     return this.firstName +'-'+this.lastName;
+            // }
+        },
+        watch:{
+            firstName(newValue){
+                //异步调用
+                setTimeout(()=>{
+                    //这里需要 写成箭头函数，此时this代表的是vm对象；如果写成function函数的话，这里的this代表的是windows对象
+                    this.fullName=newValue+this.lastName;
+                },1000)
+                
+            },
+            lastName(newValue){
+             }
+        }
+    })
+
+
+</script>
+</html>
