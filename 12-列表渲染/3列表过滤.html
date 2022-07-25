@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>列表过滤</title>
+    <script type="application/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+<!--
+v-for 指令
+1：用于展示列表数据
+2：语法：v-for="(item , index) in xxx :key='yyy'"
+3:可遍历： 数组、对象、字符串（用的很少）、指令次数（用的很少）
+-->
+
+<div id="root" >
+    <h2>人员列表(遍历数组--用的较多)</h2>
+    <input type="text" v-model="keyWord">
+<ul v-for="value in filPersons" :key="value.id">
+    {{value.name}}--{{value.age}}
+</ul>
+</div>
+
+</body>
+
+<script type="application/javascript">
+    Vue.config.productionTip=false
+    new Vue({
+        el: '#root',
+        data:{
+            // 遍历数组
+            persons:[
+                {id:'1',name:'莉莉',age:15,sex:'女'},
+                {id:'2',name:'张三',age:18,sex:'男'},
+                {id:'3',name:'丽水',age:10,sex:'女'},
+            ],
+            keyWord:'',
+            filPersons:[]
+
+        },
+        //watch实现
+        watch:{
+            immediate:true,
+            keyWord:{
+                immediate:true,
+                handler(val){
+
+                this.filPersons=this.persons.filter((p)=>{
+                    return p.name.indexOf(val) !== -1;
+                })
+                }
+            }
+        },
+        //计算属性实现
+        // computed:{
+        //     filPersons(){
+        //         // handler(){
+        //             console.log(this.keyWord)
+        //             const sortPersons=  this.persons.filter((p)=>{
+        //                 return p.name.indexOf(this.keyWord)!== -1
+        //             })
+        //
+        //
+        //         return sortPersons;
+        //
+        //         // }
+        //     }
+        //
+        // },
+        methods:{
+            changeNumber(){
+                this.a++;
+            },
+        }
+    })
+
+</script>
+</html>
