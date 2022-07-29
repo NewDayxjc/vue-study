@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>13收集表单数据</title>
+    <script type="application/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+
+
+<div id="root" >
+    <form @submit.prevent="submitInfo">
+        账号：<input type="text" v-model="userInfo.account" > <br/><br/>
+        密码：<input type="password" v-model="userInfo.password" > <br/><br/>
+        性别：<input type="radio" v-model="userInfo.sex" name="sex" value="femail" >女性
+             <input type="radio" v-model="userInfo.sex" name="sex" value="mail"> 男性
+             <br/><br/>
+        年龄：<input type="nuuserInfo.mber" v-model.number="userInfo.age" > 
+        <br/><br/>
+
+        兴趣爱好：<input type="checkbox" v-model="userInfo.hobby" value="read" > 看书
+            <input type="checkbox" v-model="userInfo.hobby" value="tour" > 旅游
+        <input type="checkbox" v-model="userInfo.hobby" value="exercise" > 健身
+        <br/><br/>
+        所属校区
+        <select>
+            <option value="">请选择校区</option>
+            <option value="beijin">北京</option>
+            <option value="shanghai">上海</option>
+            <option value="shenzhen">深圳</option>
+            <option value="changsha">长沙</option>
+
+        </select>
+        <br/><br/>
+        其他信息
+        <textarea v-model.lazy="userInfo.otherInfo"></textarea>
+        <br/><br/>
+        <button>提交</button>
+        <br/><br/>
+        <input type="checkbox" v-model="userInfo.agree">阅读并接受<a href="https://www.baidu.com">《用户协议》</a>
+        
+    </form>
+
+
+
+</div>
+
+</body>
+
+<script type="application/javascript">
+    new Vue({
+        el:'#root',
+        data:{
+            userInfo:{
+                account:'',
+                password:'',
+                sex:'femail',
+                age: '',
+                hobby:[],
+                agree:false,
+                otherInfo:''
+            },
+            
+
+        },
+        methods:{
+            submitInfo(){
+                console.log(JSON.stringify(this.userInfo))
+            }
+        }
+    })
+</script>
+
