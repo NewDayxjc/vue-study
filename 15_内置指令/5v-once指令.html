@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>5 v-once指令</title>
+    <script type="application/javascript" src="../js/vue.js"></script>
+    <style>
+        /**
+        属性选择器
+        **/
+        [v-clock]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+
+<div id="root" >
+    <h2 v-once>n的初始化值{{n}}</h2>
+    <div>{{n}}</div>
+
+
+    <button @click="n++">点我加1</button>
+
+
+</div>
+
+</body>
+<!--
+v-pre指令：
+  1.跳过其所在节点的编译过程。
+  2.可利用它跳过：没有使用指令语法、没有使用插值语法的节点，会加快编译。
+-->
+<!-- 准备好一个容器-->
+
+<script type="application/javascript">
+    //阻止Vue在启动时生成生产提示
+    Vue.config.productionTip=false;
+    new Vue({
+        el:'#root',
+        data:{
+            name:'龙蛇起陆',
+            n:5
+        },
+        methods:{
+            submitInfo(){
+                console.log(JSON.stringify(this.userInfo))
+            }
+
+        }
+    })
+</script>
+

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>14过滤器</title>
+    <script type="application/javascript" src="../js/vue.js"></script>
+    <script type="application/javascript" src="../js/dayjs.min.js"></script>
+</head>
+<body>
+
+
+<div id="root" >
+    当前时间：{{time | dateFormat}}  <br/><br/>
+    当前时间：{{fmtDate}}
+
+
+
+</div>
+
+<div id="root2" >
+    第二个Vue对象：当前时间{{time | dateFormat}}  <br/><br/>
+
+
+
+</div>
+
+</body>
+
+<script type="application/javascript">
+    //配置全局过滤器
+    Vue.filter('dateFormat',function (){
+        return dayjs().format('YYYY年M月DD日 HH:mm:ss')
+    })
+
+    const vm1 = new Vue({
+        el:'#root',
+        data:{
+            time:1621586944523
+
+        },
+        methods:{
+            submitInfo(){
+                console.log(JSON.stringify(this.userInfo))
+            },
+        },
+        computed:{
+            fmtDate(){
+                return dayjs().format('YYYY年M月DD日 HH:mm:ss')
+            }
+        },
+        //局部过滤器配置
+        // filters:{
+        //   dateFormat(){
+        //       return dayjs().format('YYYY年M月DD日 HH:mm:ss')
+        //   }
+        // }
+
+    });
+        const vm2 = new Vue({
+            el:'#root2',
+            data:{
+                time:1621586944523
+            },
+
+        });
+</script>
+

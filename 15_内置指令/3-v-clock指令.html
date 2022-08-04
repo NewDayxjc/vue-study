@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>15 内置指令</title>
+    <script type="application/javascript" src="../js/vue.js"></script>
+    <style>
+        /**
+        属性选择器
+        **/
+        [v-clock]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+
+<div id="root" >
+    <div v-cloak>{{name}}</div>
+
+
+</div>
+
+</body>
+<!--
+v-cloak指令（没有值）：
+    1.本质是一个特殊属性，Vue实例创建完毕并接管容器后，会删掉v-cloak属性。
+    2.使用css配合v-cloak可以解决网速慢时页面展示出{{xxx}}的问题。
+-->
+<!-- 准备好一个容器-->
+
+<script type="application/javascript">
+    //阻止Vue在启动时生成生产提示
+    Vue.config.productionTip=false;
+    new Vue({
+        el:'#root',
+        data:{
+            name:'龙蛇起陆',
+        },
+        methods:{
+            submitInfo(){
+                console.log(JSON.stringify(this.userInfo))
+            }
+        }
+    })
+</script>
+
