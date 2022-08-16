@@ -41,7 +41,18 @@
 <script type="application/javascript">
     //阻止Vue在启动时生成生产提示
     Vue.config.productionTip=false;
-    new Vue({
+    Vue.directive('fbind',{
+        bind(element,binding){
+            element.value=binding.value *10
+        },
+        inserted(element,binding){
+            element.focus();
+        },
+        update(element,binding){
+            element.value=binding.value *10
+        }
+    })
+    const vm =new Vue({
         el:'#root',
         data:{
             name:'<h2>Hello World</h2>',
@@ -58,17 +69,17 @@
                 console.log(binding)
                 element.innerText=binding.value*10;
             },
-            fbind:{
-                bind(element,binding){
-                    element.value=binding.value *10
-                },
-                inserted(element,binding){
-                    element.focus();
-                },
-                update(element,binding){
-                    element.value=binding.value *10
-                }
-            }
+            // fbind:{
+            //     bind(element,binding){
+            //         element.value=binding.value *10
+            //     },
+            //     inserted(element,binding){
+            //         element.focus();
+            //     },
+            //     update(element,binding){
+            //         element.value=binding.value *10
+            //     }
+            // }
         }
     })
 </script>

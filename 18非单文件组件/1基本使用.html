@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>1基本使用</title>
+    <script type="application/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+
+
+<div id="root">
+<school></school>
+</div>
+<div id="root1">
+    <school></school>
+</div>
+
+</body>
+<!--
+Vue中使用组件的三大步骤：
+  一、定义组件(创建组件)
+  二、注册组件
+  三、使用组件(写组件标签)
+
+一、如何定义一个组件？
+    使用Vue.extend(options)创建，其中options和new Vue(options)时传入的那个options几乎一样，但也有点区别；
+    区别如下：
+        1.el不要写，为什么？ ——— 最终所有的组件都要经过一个vm的管理，由vm中的el决定服务哪个容器。
+        2.data必须写成函数，为什么？ ———— 避免组件被复用时，数据存在引用关系。
+    备注：使用template可以配置组件结构。
+
+二、如何注册组件？
+      1.局部注册：靠new Vue的时候传入components选项
+      2.全局注册：靠Vue.component('组件名',组件)
+
+三、编写组件标签：
+      <school></school>
+
+      1：一次性全部买入，止盈时分批卖出；止损时一次性卖出
+
+2：若个股冲高下跌，或者开盘即快速下跌时，跌幅在4%左右 且企稳时再介入
+3：冲高回落，然后再次翻红，要观察其持续性再介入，若没有持续性，则遵循第二条
+4:不必再完全迷信于策略个股，即便是策略也是概率游戏；选股最好是结合当下热门版块
+5：逆势做好低吸；  顺势做好趋势
+-->
+<script type="application/javascript">
+    //阻止Vue在启动时生成生产提示
+    Vue.config.productionTip = false;
+
+    //定义组件
+    const school=Vue.extend({
+        template:`
+        <div>
+        <h2>{{schoolName}}</h2>
+        <h2>{{schoolAddress}}</h2>
+        </div>
+        `,
+        data(){
+            return {
+                schoolName:'天地大同',
+                schoolAddress:'人民路'
+            }
+        }
+    })
+
+    //全局注册组件
+    Vue.component('school',school)
+    const vm = new Vue({
+        el: '#root',
+        data: {
+            opacity: 1,
+        },
+        methods: {},
+        //局部注册组件
+        components:{
+            school:school
+        }
+
+    })
+
+   const vm1= new Vue({
+        el: '#root1',
+        data: {
+            opacity: 1,
+        },
+        methods: {},
+
+    })
+
+</script>
+

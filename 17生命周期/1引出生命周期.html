@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>1引出生命周期</title>
+    <script type="application/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+<!--
+生命周期：
+    1.又名：生命周期回调函数、生命周期函数、生命周期钩子。
+    2.是什么：Vue在关键时刻帮我们调用的一些特殊名称的函数。
+    3.生命周期函数的名字不可更改，但函数的具体内容是程序员根据需求编写的。
+    4.生命周期函数中的this指向是vm 或 组件实例对象。
+-->
+
+<div id="root" >
+<!--若value为变量且 与属性key同名，则可以省去key    -->
+    <h2 :style="{opacity}">欢迎来到变幻世界</h2>
+
+</div>
+
+</body>
+<script type="application/javascript">
+    //阻止Vue在启动时生成生产提示
+    Vue.config.productionTip=false;
+    new Vue({
+        el:'#root',
+        data:{
+            opacity:1,
+        },
+        methods:{
+
+        },
+
+        mounted() {
+            setInterval(()=>{
+                console.log("变幻事件")
+                this.opacity-=0.01;
+                if(this.opacity<=0){
+                    this.opacity=1;
+                }
+            },16)
+        }
+
+    })
+</script>
+

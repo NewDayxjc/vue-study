@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2分析生命周期</title>
+    <script type="application/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+
+
+<div id="root" >
+<!--若value为变量且 与属性key同名，则可以省去key    -->
+    <h2 :style="{opacity}">欢迎来到变幻世界</h2>
+
+</div>
+
+</body>
+<script type="application/javascript">
+    //阻止Vue在启动时生成生产提示
+    Vue.config.productionTip=false;
+    new Vue({
+        el:'#root',
+        data:{
+            opacity:1,
+        },
+        methods:{
+
+        },
+        beforeCreate() {
+            console.log("beforeCreate")
+        },
+        created() {
+            console.log("created")
+        },
+        beforeMount() {
+            console.log("beforeMount")
+        },
+        beforeUpdate() {
+            console.log("beforeUpdate")
+        },
+
+        mounted() {
+            setInterval(()=>{
+                console.log("变幻事件")
+                this.opacity-=0.01;
+                if(this.opacity<=0){
+                    this.opacity=1;
+                }
+            },16)
+        }
+
+    })
+</script>
+
